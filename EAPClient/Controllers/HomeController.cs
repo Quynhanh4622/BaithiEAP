@@ -8,23 +8,22 @@ namespace EAPClient.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        ServiceReference1.Service1Client service = new ServiceReference1.Service1Client();
+
+        [HttpGet]
+        public ActionResult Create()
         {
             return View();
         }
-
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Create(Employee employee)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            service.CreateEmployee(employee);
+            return RedirectToAction("ListEmployee");
         }
-
-        public ActionResult Contact()
+        public ActionResult ListEmployee(string searchString)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(service.ListEmployee(searchString));
         }
     }
 }

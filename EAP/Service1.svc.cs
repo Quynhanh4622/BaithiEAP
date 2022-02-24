@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EAP.Data;
+using EAP.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,22 +14,22 @@ namespace EAP
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-        public string GetData(int value)
+        private MyDBContext db = new MyDBContext();
+        public Employee CreateEmployee(Employee employee)
         {
-            return string.Format("You entered: {0}", value);
+            db.Employees.Add(employee);
+            db.SaveChanges();
+            return employee;
         }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public List<Employee> ListEmployee(string department)
         {
-            if (composite == null)
+            var employees = from s in db.Employees
+                           select s;
+            if (!String.IsNullOrEmpty(department))
             {
-                throw new ArgumentNullException("composite");
+                employees = employees.Where(s => s.Department.Contains(department));
             }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            return employees.ToList();
         }
     }
 }

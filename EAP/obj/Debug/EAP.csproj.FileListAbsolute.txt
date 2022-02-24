@@ -5,3 +5,7 @@ C:\baithi\EAP\obj\Debug\EAP.csproj.AssemblyReference.cache
 C:\baithi\EAP\obj\Debug\EAP.csproj.CoreCompileInputs.cache
 C:\baithi\EAP\obj\Debug\EAP.dll
 C:\baithi\EAP\obj\Debug\EAP.pdb
+C:\baithi\EAP\bin\EntityFramework.dll
+C:\baithi\EAP\bin\EntityFramework.SqlServer.dll
+C:\baithi\EAP\bin\EntityFramework.xml
+C:\baithi\EAP\bin\EntityFramework.SqlServer.xml
